@@ -16,6 +16,7 @@ const Wrapper = styled.div`
 const Contents = styled.div`
   word-wrap : break-word;
   margin: 10px 0 10px 0;
+  font-size : 0.8rem;
 `;
 
 const Span = ({ text }) => <span>{text}</span>;
@@ -30,10 +31,10 @@ export default ({ contents, hashtags }) => {
   
     splitStr.forEach(str => {
       if (str.match(regex)) {
-        componentList.push(<><Link key={str} text={str} />{' '}</>);
+        componentList.push(<><Link key={str + Math.random()} text={str} />{' '}</>);
         return;
       }
-      componentList.push(<><Span text={str} />{' '}</>);
+      componentList.push(<><Span key={str + Math.random()} text={str} />{' '}</>);
     });
   
     return componentList;

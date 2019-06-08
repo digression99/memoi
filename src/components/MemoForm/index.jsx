@@ -26,11 +26,25 @@ const ContentInput = styled.input`
 `;
 
 const MemoFormContainer = () => {
-  const [content, setContent] = useState("");
+  const [contents, setContent] = useState("");
   const dispatch = useDispatch();
 
   const handleContentChange = e => {
     setContent(e.target.value);
+  };
+
+  const parseHashtags = contents => {
+    const splitStr = contents.split(' ');
+    const hashtagList = [];
+    const regex = /(?:\s|^)#[A-Za-z0-9\-\.\_]+(?:\s|$)/;
+
+    splitStr.forEach(str => {
+      if (str.match(regex)) {
+        console.log('matched : ', str);
+        hashtagList.push(str.substr(1));
+      }
+    });
+    return hashtagList;
   };
 
   const handleKeyDown = e => {
@@ -38,7 +52,13 @@ const MemoFormContainer = () => {
     console.log('e.key : ', e.key);
 
     if (e.key === 'Enter') {
-      dispatch({ type : 'ADD_MEMO', payload : content });
+      const parsedHashtags = parseHashtags(contents);
+
+      dispatch({ type : 'ADD_MEMO', payload : {
+        contents,
+        hashtags : parsedHashtags
+      }});
+
       setContent('');
     }
   };
@@ -50,7 +70,7 @@ const MemoFormContainer = () => {
         name="content" 
         placeholder="Enter any link"
         onChange={handleContentChange}
-        value={content}
+        value={contents}
       />
     </div>
   );

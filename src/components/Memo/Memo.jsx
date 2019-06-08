@@ -19,8 +19,8 @@ const Contents = styled.div`
   font-size : 0.8rem;
 `;
 
-const Span = ({ text }) => <span>{text}</span>;
-const Link = ({ text }) => <a href={text}>{text}</a>
+const Span = ({ text }) => <><span>{text}</span>{' '}</>
+const Link = ({ text }) => <><a href={text}>{text}</a>{' '}</>
 
 export default ({ contents, hashtags }) => {
 
@@ -31,10 +31,10 @@ export default ({ contents, hashtags }) => {
   
     splitStr.forEach(str => {
       if (str.match(regex)) {
-        componentList.push(<><Link key={str + Math.random()} text={str} />{' '}</>);
+        componentList.push(<Link key={str + Math.random()} text={str} />);
         return;
       }
-      componentList.push(<><Span key={str + Math.random()} text={str} />{' '}</>);
+      componentList.push(<Span key={str + Math.random()} text={str} />);
     });
   
     return componentList;

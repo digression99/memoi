@@ -1,10 +1,19 @@
 import React from 'react';
+import styled from 'styled-components';
+import data from 'data';
+import Memos from 'components/Memos';
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 function App() {
+
   return (
-    <div>
-      This is app.
-    </div>
+    <Wrapper>
+      <Memos memos={data.memos} />
+    </Wrapper>
   );
 }
 

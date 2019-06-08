@@ -2,16 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import data from 'data';
 import Memos from 'components/Memos';
+import MemoForm from 'components/MemoForm';
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction : column;
+  max-width : 700px;
+  padding-top : 40px;
 `;
 
 function App() {
-
   return (
     <Wrapper>
+      <MemoForm />
       <Memos memos={data.memos} />
     </Wrapper>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import Memo from 'components/Memo';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 const Memos = styled.div`
   display : flex;
@@ -10,7 +11,8 @@ const Memos = styled.div`
   padding : 4px;
 `;
 
-export default ({ memos }) => {
+export default () => {
+  const memos = useSelector((state) => state.memos);
 
   return (
     <Memos>

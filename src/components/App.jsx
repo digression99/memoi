@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import data from 'data';
 import Memos from 'components/Memos';
 import MemoForm from 'components/MemoForm';
 
@@ -16,7 +15,7 @@ function App() {
   return (
     <Wrapper>
       <MemoForm />
-      <Memos memos={data.memos} />
+      <Memos />
     </Wrapper>
   );
 }

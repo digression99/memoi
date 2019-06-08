@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 
 const ContentInput = styled.input`
   min-width : 300px;
@@ -26,6 +27,7 @@ const ContentInput = styled.input`
 
 const MemoFormContainer = () => {
   const [content, setContent] = useState("");
+  const dispatch = useDispatch();
 
   const handleContentChange = e => {
     setContent(e.target.value);
@@ -36,6 +38,7 @@ const MemoFormContainer = () => {
     console.log('e.key : ', e.key);
 
     if (e.key === 'Enter') {
+      dispatch({ type : 'ADD_MEMO', payload : content });
       setContent('');
     }
   };

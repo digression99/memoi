@@ -7,7 +7,6 @@ const Memos = styled.div`
   flex-direction : row;
   flex-flow : wrap;
   justify-content : space-around;
-  max-width : 700px;
   padding : 4px;
 `;
 

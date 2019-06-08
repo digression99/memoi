@@ -1,22 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
-import Memos from 'components/Memos';
-import MemoForm from 'components/MemoForm';
-
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction : column;
-  max-width : 700px;
-  padding-top : 40px;
-`;
+import { Switch, Route } from 'react-router-dom';
+import Main from 'pages/Main';
+import Hashtag from 'pages/Hashtag';
 
 function App() {
   return (
-    <Wrapper>
-      <MemoForm />
-      <Memos />
-    </Wrapper>
+    <Switch>
+      <Route exact path="/" component={Main} />
+      <Route exact path="/hashtag/:tag" component={({ history, location, match }) => <Hashtag tag={match.params.tag} />} />
+    </Switch>
   );
 }
 

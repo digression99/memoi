@@ -1,24 +1,6 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-
-const ContentInput = styled.input`
-  width : 100%;
-  height : 2.6rem;
-  border : none;
-  outline : none;
-
-  border-radius : 10px;
-  font-size : 1.2rem;
-  transition : all .3s;
-  box-shadow : 0 0 5px 3px rgba(0, 0, 0, 0.3);
-  background : #e9ecef;
-  padding : 6px 0 6px 10px;
-
-  &:focus {
-    background : white;
-  }
-`;
+import Input from 'elements/Input';
 
 const MemoFormContainer = ({ onFocus, onBlur, ...rest }) => {
   const [contents, setContent] = useState("");
@@ -57,7 +39,7 @@ const MemoFormContainer = ({ onFocus, onBlur, ...rest }) => {
   };
 
   return (
-    <ContentInput
+    <Input
       onKeyDown={handleKeyDown}
       type="text"
       name="content"

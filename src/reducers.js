@@ -15,9 +15,8 @@ export default (state, action) => {
 
       const newState = {
         ...state,
-        memos : [...state.memos, newMemo]
+        memos : [newMemo, ...state.memos]
       };
-      console.log('new state : ', newState);
 
       return newState;
     default:

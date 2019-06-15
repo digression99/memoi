@@ -1,0 +1,52 @@
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
+const Wrapper = styled.div`
+  width : 60px;
+  height : 100%;
+  flex-shrink : 0;
+`;
+
+const MenuItem = styled.div`
+  height : 60px;
+  & a {
+    display : block;
+    height : 100%;
+    display : flex;
+    align-items : center;
+    justify-content : center;
+    text-decoration : none;
+
+    &:visited, &:link {
+      color : inherit;
+    }
+  }
+
+  &:hover {
+    background : black;
+    color : white;
+  }
+
+  ${({ selected }) =>
+    selected ? `
+      background : black;
+      color : white;
+    ` : ''
+  }
+`;
+
+const LeftSideBar = ({ selected }) => {
+  return (
+    <Wrapper>
+      <MenuItem selected={'link' === selected}>
+        <Link to="/links">link</Link>
+      </MenuItem>
+      <MenuItem selected={'group' === selected}>
+        <Link to="/groups">group</Link>
+      </MenuItem>
+    </Wrapper>
+  )
+};
+
+export default LeftSideBar;

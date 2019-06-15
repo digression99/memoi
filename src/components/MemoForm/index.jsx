@@ -48,8 +48,6 @@ const MemoFormContainer = () => {
   };
 
   const handleKeyDown = e => {
-    console.log('key down.');
-    console.log('e.key : ', e.key);
 
     if (e.key === 'Enter') {
       const parsedHashtags = parseHashtags(contents);

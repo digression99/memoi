@@ -1,28 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
-import Memos from 'components/Memos';
-import { useSelector } from 'react-redux';
 import Header from 'components/Header';
+import LeftSideBar from 'components/LeftSideBar';
 
 const Wrapper = styled.div`
   display: flex;
-  align-items: center;
-  flex-direction : column;
-  max-width : 700px;
-  padding-top : 40px;
+  flex-direction : row;
+  height : 100%;
 `;
 
-const Main = () => {
-  const memos = useSelector(state => state.memos);
+const MainPage = () => {
 
   return (
     <>
       <Header />
       <Wrapper>
-        <Memos memos={memos} />
+        <LeftSideBar />
+        <div>
+          This is main
+        </div>
       </Wrapper>
     </>
   );
 }
 
-export default Main;
+export default MainPage;

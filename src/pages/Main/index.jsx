@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Memos from 'components/Memos';
-import MemoForm from 'components/MemoForm';
 import { useSelector } from 'react-redux';
 import Header from 'components/Header';
 
@@ -20,7 +19,6 @@ const Main = () => {
     <>
       <Header />
       <Wrapper>
-        <MemoForm />
         <Memos memos={memos} />
       </Wrapper>
     </>

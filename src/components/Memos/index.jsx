@@ -6,7 +6,7 @@ const Memos = styled.div`
   display : flex;
   flex-direction : row;
   flex-flow : wrap;
-  justify-content : space-around;
+  align-content: flex-start;
   padding : 4px;
 `;
 

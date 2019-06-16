@@ -11,7 +11,6 @@ const Memos = styled.div`
 `;
 
 export default ({ memos }) => {
-  // const memos = useSelector((state) => state.memos);
 
   return (
     <Memos>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.ul`
@@ -29,34 +29,46 @@ const MenuItem = styled.li`
 `;
 
 const MemoMenuModal = ({ onClose }) => {
+  const containerRef = useRef(null);
 
   const handleBodyClick = e => {
     e.preventDefault();
     console.log('[MemoMenuModal.handleBodyclick]');
+    const node = containerRef.current;
+
+    if (node.contains(e.target)) {
+      return;
+    } 
     onClose();
   };
 
   useEffect(() => {
-    document.body.addEventListener('click', handleBodyClick);
+    document.querySelector('#root').addEventListener('click', handleBodyClick);
     return () => {
-      document.body.removeEventListener('click', handleBodyClick);
+      document.querySelector('#root').removeEventListener('click', handleBodyClick);
     };
   }, []);
 
-  const handleDeleteClick = e => {
+  const handleMenuClick = cb => e => {
+    e.preventDefault();
+    cb();
+    onClose();
+  };
+
+  const handleDeleteClick = handleMenuClick(() => {
     console.log('handle delete click');
-  };
+  });
 
-  const handleEditClick = e => {
+  const handleEditClick = handleMenuClick(() => {
     console.log('handle edit click');
-  };
+  });
 
-  const handleAddToGroupClick = e => {
+  const handleAddToGroupClick = handleMenuClick(() => {
     console.log('handle add to group click');
-  };
+  });
   
   return (
-    <Container>
+    <Container ref={containerRef}>
       <MenuItem onClick={handleDeleteClick}>
         <span>delete</span>
       </MenuItem>

@@ -55,8 +55,8 @@ export default ({ isMenuOpen, onMenuButtonClick, onCloseMenu, contents, hashtags
       <Right>
         <MenuButton onClick={onMenuButtonClick}>
           <img src={dotMenuIcon} alt="menu" />
-          {isMenuOpen && <MemoMenu onClose={onCloseMenu} />}
         </MenuButton>
+        {isMenuOpen && <MemoMenu onClose={onCloseMenu} />}
       </Right>
     </Wrapper>
   )

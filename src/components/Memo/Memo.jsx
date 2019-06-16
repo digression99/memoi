@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Hashtags from 'components/Hashtags';
 import dotMenuIcon from 'resources/icons/dot-menu.png';
-import { Link } from 'react-router-dom';
 import MemoMenu from 'components/MemoMenu';
+import { parseContents } from 'lib';
 
 const Wrapper = styled.div`
   display : flex;
@@ -44,40 +44,7 @@ const MenuButton = styled.button`
   }
 `;
 
-const Span = ({ text }) => <><span>{text}</span>{' '}</>
-const Url = ({ text }) => <><a href={text}>{text}</a>{' '}</>
-const HashtagLink = ({ tag }) => <><Link to={`/hashtag/${tag.substr(1)}`}>{tag}</Link>{' '}</>
-
-const linkRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
-const hashtagRegex = /(?:\s|^)#[A-Za-z0-9\-\.\_]+(?:\s|$)/;
-
-export default ({ contents, hashtags }) => {
-  const [ isMenuOpen, setIsMenuOpen ] = useState(false);
-  const handleMenuButtonClick = e => {
-    console.log('handleMenuButtonClick');
-    setIsMenuOpen(true);
-  };
-
-  const parseContents = (contents) => {
-    const splitStr = contents.split(' ');
-    const componentList = [];
-  
-    splitStr.forEach(str => {
-      if (str.match(linkRegex)) {
-        componentList.push(<Url key={str + Math.random()} text={str} />);
-      } else if (str.match(hashtagRegex)) {
-        componentList.push(<HashtagLink key={str + Math.random()} tag={str} />)
-      } else {
-        componentList.push(<Span key={str + Math.random()} text={str} />);
-      }
-    });
-  
-    return componentList;
-  };
-
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
+export default ({ isMenuOpen, onMenuButtonClick, onCloseMenu, contents, hashtags }) => {
 
   return (
     <Wrapper>
@@ -86,9 +53,9 @@ export default ({ contents, hashtags }) => {
         <Hashtags hashtags={hashtags} />
       </Left>
       <Right>
-        <MenuButton onClick={handleMenuButtonClick}>
+        <MenuButton onClick={onMenuButtonClick}>
           <img src={dotMenuIcon} alt="menu" />
-          {isMenuOpen && <MemoMenu onClose={closeMenu} />}
+          {isMenuOpen && <MemoMenu onClose={onCloseMenu} />}
         </MenuButton>
       </Right>
     </Wrapper>

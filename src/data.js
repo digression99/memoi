@@ -55,10 +55,16 @@ const memos = [
 const groups = [
   {
     id: generateUuid(),
-    name: "productivity app starter",
-    hashtags: [ 'productivity', 'lifestyle'],
-    memos : [ memos[6], memos[7]]
-  }
+    name: "react hooks",
+    hashtags: [ 'react', 'hooks' ],
+    memos : [ memos[0].id, memos[1].id, memos[6].id, memos[7].id ] // which memos are included in this group.
+  },
+  {
+    id: generateUuid(),
+    name: "rxjs with react",
+    hashtags: [ 'react', 'rxjs', 'redux-observable' ],
+    memos : [ memos[4].id, memos[5].id ] // which memos are included in this group.
+  },
 ];
 
 export default {

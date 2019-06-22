@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import Input from 'elements/Input';
+
+const Wrapper = styled.div`
+
+`;
 
 const MemoFormContainer = ({ onFocus, onBlur, ...rest }) => {
   const [contents, setContent] = useState("");
@@ -39,17 +44,18 @@ const MemoFormContainer = ({ onFocus, onBlur, ...rest }) => {
   };
 
   return (
-    <Input
-      onKeyDown={handleKeyDown}
-      type="text"
-      name="content"
-      placeholder="Enter any link"
-      onChange={handleContentChange}
-      value={contents}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      {...rest}
-    />
+    <Wrapper {...rest}>
+      <Input
+        onKeyDown={handleKeyDown}
+        type="text"
+        name="content"
+        placeholder="Enter any link"
+        onChange={handleContentChange}
+        value={contents}
+        onFocus={onFocus}
+        onBlur={onBlur}
+      />
+    </Wrapper>
   );
 };
 

@@ -11,7 +11,7 @@ const Container = styled.div`
   padding : 10px;
 `;
 
-const GroupItemModal = ({ onClose, isOpen, children }) => {
+const GroupItemModal = ({ onClose, children }) => {
 
   const handleBackgroundClick = e => {
     e.preventDefault();

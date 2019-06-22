@@ -8,6 +8,7 @@ const Wrapper = styled.div`
   display : flex;
   align-items: center;
   transition : all .3s;
+  justify-self : flex-end;
 `;
 
 const SearchIcon = styled.img`
@@ -27,9 +28,7 @@ const SearchForm = ({ onFocus, onBlur, ...rest }) => {
   };
 
   return (
-    <Wrapper
-      {...rest}
-    >
+    <Wrapper {...rest}>
       <Input
         type="text"
         placeholder="Search"

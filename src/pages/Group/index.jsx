@@ -4,12 +4,7 @@ import Header from 'components/Header';
 import LeftSideBar from 'components/LeftSideBar';
 import GroupItem from 'components/GroupItem';
 import { useSelector } from 'react-redux';
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction : row;
-  height : 100%;
-`;
+import Page from 'elements/Page';
 
 const GroupContainer = styled.div`
   display: flex;
@@ -30,15 +25,15 @@ export default () => {
   const groups = useSelector(state => state.groups);
 
   return (
-    <>
-      <Header />
-      <Wrapper>
-        <LeftSideBar selected={'group'} />
+    <Page.OuterWrapper>
+      <LeftSideBar selected={'group'} />
+      <Page.Wrapper>
+        <Header />
         <GroupContainer>
           {groups.map(group => <GroupItem key={group.id} {...group} />)}
         </GroupContainer>
-      </Wrapper>
-    </>
+      </Page.Wrapper>
+    </Page.OuterWrapper>
   )
 };
 

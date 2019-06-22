@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import homeIcon from 'resources/icons/home.png';
 
 const Wrapper = styled.div`
   width : 60px;
@@ -23,9 +24,12 @@ const MenuItem = styled.div`
     }
   }
 
-  &:hover {
-    background : black;
-    color : white;
+  ${
+    ({ hovereffect }) => hovereffect &&
+    `&:hover {
+      background : black;
+      color : white;
+    }`
   }
 
   ${({ selected }) =>
@@ -39,10 +43,15 @@ const MenuItem = styled.div`
 const LeftSideBar = ({ selected }) => {
   return (
     <Wrapper>
-      <MenuItem selected={'link' === selected}>
+      <MenuItem selected={false} hovereffect={false}>
+        <Link to="/">
+          <img src={homeIcon} alt="home" />
+        </Link>
+      </MenuItem>
+      <MenuItem selected={'link' === selected} hovereffect={true}>
         <Link to="/links">link</Link>
       </MenuItem>
-      <MenuItem selected={'group' === selected}>
+      <MenuItem selected={'group' === selected} hovereffect={true}>
         <Link to="/groups">group</Link>
       </MenuItem>
     </Wrapper>

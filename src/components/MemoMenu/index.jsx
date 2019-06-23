@@ -32,23 +32,23 @@ const MenuItem = styled.li`
 const MemoMenuModal = ({ onClose }) => {
   const containerRef = useRef(null);
 
-  const handleBodyClick = e => {
-    e.preventDefault();
-    console.log('[MemoMenuModal.handleBodyclick]');
-    const node = containerRef.current;
-
-    if (node.contains(e.target)) {
-      return;
-    } 
-    onClose();
-  };
-
   useEffect(() => {
+    const handleBodyClick = e => {
+      e.preventDefault();
+      console.log('[MemoMenuModal.handleBodyclick]');
+      const node = containerRef.current;
+
+      if (node.contains(e.target)) {
+        return;
+      }
+      onClose();
+    };
+
     document.querySelector('#root').addEventListener('click', handleBodyClick);
     return () => {
       document.querySelector('#root').removeEventListener('click', handleBodyClick);
     };
-  }, []);
+  }, [onClose]);
 
   const handleMenuClick = cb => e => {
     e.preventDefault();

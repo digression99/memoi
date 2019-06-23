@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import reducers from './reducers';
+import reducers from 'modules';
 import initialState from './data';
 
 export default () => {

@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import shortid from 'shortid';
+import { useDispatch } from 'react-redux';
+import * as groupActions from 'modules/groups';
 import Chip from 'elements/Chip';
 
 const GroupForm = () => {
+  const dispatch = useDispatch();
   const [ name, setName ] = useState('');
   const [ tagInput, setTagInput ] = useState('');
-  const [ chips, setChips ] = useState([]);
+  const [ tags, setTags ] = useState([]);
 
   const validateForm = () => {
     if (name.length < 4) {
@@ -21,7 +24,8 @@ const GroupForm = () => {
     if (validateForm()) {
       console.log('submitted.');
       console.log('[handleSubmit] name : ', name);
-      console.log('chips : ', chips);
+      console.log('tags : ', tags);
+      dispatch(groupActions.addGroup({ name, tags }));
     }
   };
 
@@ -31,11 +35,11 @@ const GroupForm = () => {
 
       if (tagInput.length === 0) return;
 
-      setChips(prevState => [...prevState, tagInput]);
+      setTags(prevState => [...prevState, tagInput]);
       setTagInput('');
     } else if (e.key === 'Backspace' && tagInput.length === 0) {
-      if (chips.length > 0) {
-        setChips(prevState => prevState.slice(0, -1));
+      if (tags.length > 0) {
+        setTags(prevState => prevState.slice(0, -1));
       }
     }
   };
@@ -53,7 +57,7 @@ const GroupForm = () => {
       </div>
       <div>
         <label htmlFor="">tags</label>
-        {chips.map(chip => <Chip key={shortid.generate()}>{chip}</Chip>)}
+        {tags.map(tag => <Chip key={shortid.generate()}>{tag}</Chip>)}
         <input
           type="text"
           value={tagInput}
